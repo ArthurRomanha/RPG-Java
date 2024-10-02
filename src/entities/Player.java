@@ -46,6 +46,17 @@ public class Player extends Entity {
     }
 
     public void update() {
+        if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed){
+            timerChangeSprite++;
+            if (timerChangeSprite > 12) {
+                if (spriteCounter == 1) {
+                    spriteCounter = 2;
+                } else if (spriteCounter == 2) {
+                    spriteCounter = 1;
+                }
+                timerChangeSprite = 0;
+            }
+        };
         if (keyH.upPressed) {
             direction = "up";
             posY -= speed;
@@ -58,15 +69,6 @@ public class Player extends Entity {
         } else if (keyH.rightPressed) {
             direction = "right";
             posX += speed;
-        }
-        timerChangeSprite++;
-        if (timerChangeSprite > 12) {
-            if (spriteCounter == 1) {
-                spriteCounter = 2;
-            } else if (spriteCounter == 2) {
-                spriteCounter = 1;
-            }
-            timerChangeSprite = 0;
         }
     }
 
